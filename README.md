@@ -2,12 +2,12 @@
 
 该项目用于存储图片，作为免费的线上图片仓库使用。
 
-这个仓库也是 `juya-news-card` 的图片图床仓库。  
+这个仓库也是 `santi-news-card` 的图片图床仓库。  
 作用是把本地 `public/uploads/...` 的手动粘贴图片，转成可公网访问的 CDN 链接，主要用于 `issuePost.md` 发布到 GitHub Issue 时正常显示图片。
 
 ## 核心用途
 
-- 存放从 `juya-news-card` 自动同步过来的图片素材。
+- 存放从 `santi-news-card` 自动同步过来的图片素材。
 - 通过 jsDelivr 提供外链，例如：
   `https://cdn.jsdelivr.net/gh/DanieRayy/picx-images-hosting@main/imagehub/curate2/...`
 - 避免在 GitHub Issue / 远程环境里出现本地路径（如 `/uploads/...`）不可见的问题。
@@ -24,10 +24,10 @@
 
 ## 工作方式（自动）
 
-`juya-news-card/scripts/pipeline-export.ts` 在导出时会：
+`santi-news-card/scripts/pipeline-export.ts` 在导出时会：
 
 1. 检查是否有 `/uploads/...` 本地图片。
-2. 自动 clone/更新本仓库到本地工作目录（默认 `juya-news-card/.cache/picx-images-hosting`）。
+2. 自动 clone/更新本仓库到本地工作目录（默认 `santi-news-card/.cache/picx-images-hosting`）。
 3. 复制图片到本仓库目录（默认前缀：`imagehub/curate2`）。
 4. `git add/commit/push` 到 `main` 分支。
 5. 把 `issuePost.md` 内链接改写为 jsDelivr CDN 链接。
@@ -52,7 +52,7 @@ imagehub/curate2/20260506/3/1778079060911-1cf0c40b0f1a.png
 https://cdn.jsdelivr.net/gh/DanieRayy/picx-images-hosting@main/imagehub/curate2/20260506/3/1778079060911-1cf0c40b0f1a.png
 ```
 
-## 配置（在 `juya-news-card/.env`）
+## 配置（在 `santi-news-card/.env`）
 
 ```env
 # 是否启用自动同步（默认 true）
@@ -73,7 +73,7 @@ PICX_BRANCH=main
 
 ## 使用步骤
 
-1. 在 `juya-news-card` 完成 `curate2` 编辑并保存（含手动图片）。
+1. 在 `santi-news-card` 完成 `curate2` 编辑并保存（含手动图片）。
 2. 运行：
    `npm run pipeline:export -- --date YYYYMMDD`
 3. 看到日志：
